@@ -6,12 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import AIGenerator from './AIGenerator';
-import { Wallet, Gift, Users, BarChart, Crown } from 'lucide-react';
+import { Wallet, Gift, Users, BarChart, Crown, Bot } from 'lucide-react';
 import { useEffect, useState } from 'react';
+
+type View = 'referrals' | 'history' | 'withdraw' | 'prime' | 'ai-playground';
 
 interface DashboardProps {
   user: User;
-  setView: (view: 'referrals' | 'history' | 'withdraw' | 'prime') => void;
+  setView: (view: View) => void;
   users: User[];
 }
 
@@ -111,6 +113,9 @@ export default function Dashboard({ user, setView, users }: DashboardProps) {
             </Button>
             <Button variant="outline" onClick={() => setView('history')}>
               <BarChart className="mr-2 h-4 w-4" /> Earning History
+            </Button>
+            <Button variant="outline" onClick={() => setView('ai-playground')}>
+              <Bot className="mr-2 h-4 w-4" /> AI Playground
             </Button>
           </CardContent>
         </Card>

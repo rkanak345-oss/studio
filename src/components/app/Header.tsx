@@ -11,7 +11,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Dna, LogOut, Shield, User as UserIcon } from 'lucide-react';
+import { Dna, LogOut, Shield, User as UserIcon, Bot } from 'lucide-react';
+
+type View = 'home' | 'auth' | 'referrals' | 'history' | 'withdraw' | 'prime' | 'admin' | 'ai-playground';
 
 interface HeaderProps {
   user: User | null;
@@ -19,9 +21,10 @@ interface HeaderProps {
   onLogout: () => void;
   onAdmin: () => void;
   goHome: () => void;
+  setView: (view: View) => void;
 }
 
-export default function Header({ user, onLogin, onLogout, onAdmin, goHome }: HeaderProps) {
+export default function Header({ user, onLogin, onLogout, onAdmin, goHome, setView }: HeaderProps) {
   return (
     <header className="bg-card border-b sticky top-0 z-50">
       <div className="container max-w-7xl mx-auto flex items-center justify-between p-4">
@@ -59,9 +62,9 @@ export default function Header({ user, onLogin, onLogout, onAdmin, goHome }: Hea
                     <span>Admin Panel</span>
                   </DropdownMenuItem>
                 ) : (
-                  <DropdownMenuItem disabled>
-                    <UserIcon className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
+                  <DropdownMenuItem onClick={() => setView('ai-playground')}>
+                    <Bot className="mr-2 h-4 w-4" />
+                    <span>AI Playground</span>
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuSeparator />

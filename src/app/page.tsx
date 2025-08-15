@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import type { User, Withdrawal, Tx } from '@/lib/types';
-import { Dna, DollarSign, Users, Wallet, ChevronRight, BarChart, FileText, Crown, Shield } from 'lucide-react';
+import { Dna, DollarSign, Users, Wallet, ChevronRight, BarChart, FileText, Crown, Shield, Bot } from 'lucide-react';
 
 import Header from '@/components/app/Header';
 import AuthModal from '@/components/app/AuthModal';
@@ -14,8 +14,9 @@ import WithdrawForm from '@/components/app/WithdrawForm';
 import PrimePage from '@/components/app/PrimePage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import AIGeneratorPage from '@/components/app/AIGeneratorPage';
 
-type View = 'home' | 'auth' | 'referrals' | 'history' | 'withdraw' | 'prime' | 'admin';
+type View = 'home' | 'auth' | 'referrals' | 'history' | 'withdraw' | 'prime' | 'admin' | 'ai-playground';
 
 export default function Home() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -164,6 +165,8 @@ export default function Home() {
         return <WithdrawForm user={currentUser} setView={setView} refreshData={refreshData} />;
       case 'prime':
         return <PrimePage setView={setView} />;
+      case 'ai-playground':
+        return <AIGeneratorPage setView={setView} />;
       default:
         return <Dashboard user={currentUser} setView={setView} users={users} />;
     }
@@ -184,6 +187,7 @@ export default function Home() {
           }
         }}
         goHome={() => setView('home')}
+        setView={setView}
       />
       <main className="container max-w-7xl mx-auto px-4 py-8">
         {renderView()}
