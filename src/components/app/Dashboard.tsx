@@ -48,7 +48,7 @@ export default function Dashboard({ user, setView, users }: DashboardProps) {
           <CardHeader>
             <CardTitle>How It Works</CardTitle>
             <CardDescription>
-              Invite friends with your code. For each valid referral, you get <strong>₹100</strong> and <strong>₹150</strong> is tracked as admin profit.
+              Invite friends with your code. For each valid referral, you get <strong>₹100</strong>.
             </CardDescription>
           </CardHeader>
         </Card>
